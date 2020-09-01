@@ -6,7 +6,7 @@ import TodoList from './components/TodoList'
 
 function App() {
   return (
-    <div>
+    <div className="bg-primary text-white">
       <TodoInput></TodoInput>
       <TodoList></TodoList>
     </div>
