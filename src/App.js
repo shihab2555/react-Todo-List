@@ -42,6 +42,7 @@ class App extends Component {
             clearList={this.clearList}
             handleDelete={this.handleDelete}
             handleEdit={this.handleEdit}
+            
             ></TodoList>
           </div>
         </div>
