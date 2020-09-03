@@ -9,22 +9,38 @@ import TodoList from './components/TodoList'
 class App extends Component {
 
   state = {
-    item:[{id:1, title:'Wake Up'},
-    {id:2, title:'Make Breakfast'}],
+    items:[],
     id:uuidv4(),
     item:'',
     editItem:false
   };
 
-  handleChange = (e) =>{console.log("handleChange")};
-  handleSubmit = (e) =>{console.log("handleSubmit")};
+  handleChange = (e) =>{
+    this.setState({
+      item: e.target.value
+    });
+  };
+  handleSubmit = (e) =>{
+    e.preventDefault();
+    const newItem = {
+      id: this.state.id,
+      title: this.state.item
+    };
+    const updatedItems = [...this.state.items, newItem];
+    this.setState({
+      items: updatedItems,
+      item: '',
+      id: uuidv4(),
+      editItem: false
+    }, ()=> console.log(this.state))
+  };
   clearList = () =>{console.log("ClearList")};
 
   handleDelete = (id) =>{console.log(`handleDelete $(id)`)};
   handleEdit = (id) =>{console.log(`handleEdit $(id)`)};
 
   render() {
-    console.log(this.state);
+    console.log(this.state)
     return (
       <div className="container">
         <div className="row">
