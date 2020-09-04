@@ -14,12 +14,14 @@ class App extends Component {
     item:'',
     editItem:false
   };
-
+// Handle the typing method of item
   handleChange = (e) =>{
     this.setState({
       item: e.target.value
     });
   };
+
+  //Handle the submit button for new item
   handleSubmit = (e) =>{
     e.preventDefault();
     const newItem = {
@@ -34,10 +36,37 @@ class App extends Component {
       editItem: false
     }, ()=> console.log(this.state))
   };
-  clearList = () =>{console.log("ClearList")};
 
-  handleDelete = (id) =>{console.log(`handleDelete $(id)`)};
-  handleEdit = (id) =>{console.log(`handleEdit $(id)`)};
+// Handle the clear list button for all items
+  clearList = () =>{
+    this.setState ({
+      items: []
+    });
+  };
+
+ // Handle the delete button for each item
+  handleDelete = (id) =>{
+    const filterdItems = this.state.items.filter(item =>
+      item.id!==id);
+      
+      this.setState({
+        items: filterdItems
+      });
+  };
+
+  // Handle the edit button for each item
+  handleEdit = (id) =>{
+    const filterdItems = this.state.items.filter(item =>
+      item.id!=id);
+      const selectedItem = this.state.items.find(item=>
+        item.id === id);
+      this.setState({
+        items: filterdItems,
+        item: selectedItem.title,
+        id:id,
+        editItem: true
+      });
+  };
 
   render() {
     console.log(this.state)
